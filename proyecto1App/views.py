@@ -16,6 +16,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def inicio(request):
     return render(request, "proyecto1App/index.html")
@@ -40,54 +41,54 @@ def buscar(request):
 
 ################Libros Vistas################
 
-class LibroListView(ListView):
+class LibroListView(LoginRequiredMixin,ListView):
   model = libro
   template_name = "proyecto1App/Vistas_Libros/lista.html"
 
-class LibroDetail(DetailView):
+class LibroDetail(LoginRequiredMixin, DetailView):
   model = libro
   template_name = "proyecto1App/Vistas_Libros/libro_detail.html"
 
-class LibroCreateView(CreateView):
+class LibroCreateView(LoginRequiredMixin, CreateView):
   model = libro
   template_name = "proyecto1App/Vistas_Libros/libro_form.html"
   success_url = reverse_lazy("List")
   fields = ["nombre", "autor", "autor", "editorial", "genero", "sinopsis", "numpag", "fecha_pub", "fecha_compra", "ISBN", "formato"]
 
-class LibroUpdateView(UpdateView):
+class LibroUpdateView(LoginRequiredMixin, UpdateView):
   model = libro
   template_name = "proyecto1App/Vistas_Libros/libro_edit.html"
   success_url = reverse_lazy("List")
   fields = ["nombre", "autor", "autor", "editorial", "genero", "sinopsis", "numpag", "fecha_pub", "fecha_compra", "ISBN", "formato"]
 
-class LibroDeleteView(DeleteView):
+class LibroDeleteView(LoginRequiredMixin,DeleteView):
   model = libro
   success_url = reverse_lazy("List")
   template_name = "proyecto1App/Vistas_Libros/libro_confirm_delete.html"
 
 ################# Revista Vistas #######################
 
-class RevistaListView(ListView):
+class RevistaListView(LoginRequiredMixin, ListView):
   model = revista
   template_name = "proyecto1App/Vistas_Revistas/lista.html"
 
-class RevistaDetail(DetailView):
+class RevistaDetail(LoginRequiredMixin, DetailView):
   model = revista
   template_name = "proyecto1App/Vistas_Revistas/revista_detail.html"
 
-class RevistaCreateView(CreateView):
+class RevistaCreateView(LoginRequiredMixin,CreateView):
   model = revista
   template_name = "proyecto1App/Vistas_Revistas/revista_form.html"
   success_url = reverse_lazy("List")
   fields = ["nombre", "titulo", "numero", "web", "genero", "temas", "fecha_pub", "fecha_compra", "formato"]
 
-class RevistaUpdateView(UpdateView):
+class RevistaUpdateView(LoginRequiredMixin,UpdateView):
   model = revista
   template_name = "proyecto1App/Vistas_Revistas/revista_edit.html"
   success_url = reverse_lazy("List")
   fields = ["nombre", "titulo", "numero", "web", "genero", "temas", "fecha_pub", "fecha_compra", "formato"]
 
-class RevistaDeleteView(DeleteView):
+class RevistaDeleteView(LoginRequiredMixin,DeleteView):
   model = revista
   success_url = reverse_lazy("List")
   template_name = "proyecto1App/Vistas_Revistas/revista_confirm_delete.html"
@@ -95,27 +96,27 @@ class RevistaDeleteView(DeleteView):
 
 ################# Autores Vistas #######################
 
-class AutorListView(ListView):
+class AutorListView(LoginRequiredMixin,ListView):
   model = autor
   template_name = "proyecto1App/Vistas_Autores/lista.html"
 
-class AutorDetail(DetailView):
+class AutorDetail(LoginRequiredMixin,DetailView):
   model = autor
   template_name = "proyecto1App/Vistas_Autores/autor_detail.html"
 
-class AutorCreateView(CreateView):
+class AutorCreateView(LoginRequiredMixin,CreateView):
   model = autor
   template_name = "proyecto1App/Vistas_Autores/autor_form.html"
   success_url = reverse_lazy("List")
   fields = ["nombre", "apellido", "email", "nacionalidad", "genero", "premios", "biografia"]
 
-class AutorUpdateView(UpdateView):
+class AutorUpdateView(LoginRequiredMixin,UpdateView):
   model = autor
   template_name = "proyecto1App/Vistas_Autores/autor_edit.html"
   success_url = reverse_lazy("List")
   fields = ["nombre", "apellido", "email", "nacionalidad", "genero", "premios", "biografia"]
 
-class AutorDeleteView(DeleteView):
+class AutorDeleteView(LoginRequiredMixin,DeleteView):
   model = autor
   success_url = reverse_lazy("List")
   template_name = "proyecto1App/Vistas_Autores/autor_confirm_delete.html"
@@ -169,3 +170,4 @@ def register(request):
 
       return render(request,"proyecto1App/registro.html" ,  {"form":form})
 
+   

@@ -46,7 +46,7 @@ class revista(models.Model):
     nombre = models.CharField(max_length=40)
     titulo = models.CharField(max_length=40, default="revista1")
     numero = models.IntegerField()
-    web = models.CharField(max_length=40, default="página web")
+    web = models.CharField(max_length=40, default="www.pagina.com")
     genero = models.CharField(max_length=40)
     temas = models.CharField(max_length=40)
     fecha_pub = models.DateField(default="2023-10-16")
