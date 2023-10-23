@@ -6,11 +6,16 @@ from proyecto1App.models import autor
 from proyecto1App.forms import libroFormulario
 from proyecto1App.forms import revistaFormulario
 from proyecto1App.forms import autorFormulario
+from proyecto1App.forms import UserRegisterForm
 
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout, authenticate
+
 
 def inicio(request):
     return render(request, "proyecto1App/index.html")
@@ -114,3 +119,53 @@ class AutorDeleteView(DeleteView):
   model = autor
   success_url = reverse_lazy("List")
   template_name = "proyecto1App/Vistas_Autores/autor_confirm_delete.html"
+
+
+################# LOGIN ######################
+def login_request(request):
+
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data = request.POST)
+
+        if form.is_valid():  # Si pasó la validación de Django
+
+            usuario = form.cleaned_data.get('username')
+            contrasenia = form.cleaned_data.get('password')
+
+            user = authenticate(username= usuario, password=contrasenia)
+
+            if user is not None:
+                login(request, user)
+
+                return render(request, "proyecto1App/index.html", {"mensaje":f"Bienvenido {usuario}"})
+            else:
+                return render(request, "proyecto1App/index.html", {"mensaje":"Datos incorrectos"})
+           
+        else:
+
+            return render(request, "proyecto1App/index.html", {"mensaje":"Formulario erroneo"})
+
+    form = AuthenticationForm()
+
+    return render(request, "proyecto1App/login.html", {"form": form})
+
+####################REGISTRO#######################
+
+def register(request):
+
+      if request.method == 'POST':
+
+            #form = UserCreationForm(request.POST)
+            form = UserRegisterForm(request.POST)
+            if form.is_valid():
+
+                  username = form.cleaned_data['username']
+                  form.save()
+                  return render(request,"proyecto1App/index.html" ,  {"mensaje":"Usuario Creado :)"})
+
+      else:
+            #form = UserCreationForm()       
+            form = UserRegisterForm()     
+
+      return render(request,"proyecto1App/registro.html" ,  {"form":form})
+

@@ -1,0 +1,24 @@
+{% extends "proyecto1App/base.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+<head>
+    <title> Pagina de inicio de sesion </title>
+</head>
+
+<body>
+    <h2> {{ mensaje }}</h2>
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+            {{ form.as_p }}
+        <button type="submit">Registrate en la plataforma</button>
+    </form>
+
+</body>
+
+<h1> INDEX </h1>
+
+{% endblock contenidoquecambia %}
