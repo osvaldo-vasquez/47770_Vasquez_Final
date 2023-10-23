@@ -1,0 +1,21 @@
+{% extends "proyecto1App/base.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+    <p> Título del libro: <i> {{libro.nombre}}</i> </p>
+    <p> Autor: <i> {{libro.autor}}</i> </p>
+    <p> Editorial: <i> {{libro.editorial}}</i> </p>
+    <p> Género del libro: <i> {{libro.genero}}</i> </p>
+    <p> Sinopsis: <i> {{libro.sinopsis}}</i> </p>
+    <p> Número de páginas: <i> {{libro.numpag}}</i> </p>
+    <p> Fecha de publicación: <i> {{libro.fecha_pub}}</i> </p>
+    <p> Fecha de compra: <i> {{libro.fecha_compra}}</i> </p>
+    <p> ISBN: <i> {{libro.ISBN}}</i> </p>
+    <p> Formato: <i> {{libro.formato}}</i> </p>
+    <p>
+        <a href = "{% url 'List' %}">Regresar</a>
+    </p>
+
+{% endblock contenidoquecambia %}

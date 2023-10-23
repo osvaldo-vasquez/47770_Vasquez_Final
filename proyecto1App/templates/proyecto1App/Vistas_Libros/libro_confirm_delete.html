@@ -1,0 +1,16 @@
+{% extends "proyecto1App/base.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+<form method = "post">
+    {% csrf_token %}
+
+    <p>¿Estás seguro que desear borrar este libro? ""{{ object }}""?</p>
+
+    <input type = "submit" value = "Borrar">
+
+</form>
+
+{% endblock contenidoquecambia %}

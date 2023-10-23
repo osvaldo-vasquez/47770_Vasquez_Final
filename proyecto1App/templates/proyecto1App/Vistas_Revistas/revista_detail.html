@@ -1,0 +1,20 @@
+{% extends "proyecto1App/base.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+    <p> Nombre de la revista: <i> {{revista.nombre}}</i> </p>
+    <p> Título de la edición: <i> {{revista.titulo}}</i> </p>
+    <p> Número: <i> {{revista.numero}}</i> </p>
+    <p> Página WEB: <i> {{revista.web}}</i> </p>
+    <p> Género de la revista: <i> {{revista.genero}}</i> </p>
+    <p> Temas que trata la revista: <i> {{revista.temas}}</i> </p>
+    <p> Fecha de publicación: <i> {{revista.fecha_pub}}</i> </p>
+    <p> Fecha de compra: <i> {{revista.fecha_compra}}</i> </p>
+    <p> Formato: <i> {{revista.formato}}</i> </p>
+    <p>
+        <a href = "{% url 'ListRevista' %}">Regresar</a>
+    </p>
+
+{% endblock contenidoquecambia %}

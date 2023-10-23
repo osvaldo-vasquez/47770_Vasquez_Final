@@ -1,0 +1,29 @@
+{% extends "proyecto1App/base.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+    <p> Nombre: <i> {{autor.nombre}}</i> </p>
+    <p> Apellido: <i> {{autor.apellido}}</i> </p>
+    <p> E-mail: <i> {{autor.email}}</i> </p>
+    <p> Nacionalidad: <i> {{autor.nacionalidad}}</i> </p>
+    <p> Género de su escritura: <i> {{autor.genero}}</i> </p>
+    <p> Premios que ha ganado: <i> {{autor.premio}}</i> </p>
+    <p> Biografía: <i> {{autor.biografia}}</i> </p>
+    <p>
+        <a href = "{% url 'ListAutor' %}">Regresar</a>
+    </p>
+
+{% endblock contenidoquecambia %}
+
+class autor(models.Model):
+    nombre = models.CharField(max_length=40)
+    apellido = models.CharField(max_length=20)
+    email = models.EmailField(max_length=40, default = "autor@correo.com")
+    nacionalidad = models.CharField(max_length=40)
+    genero = models.CharField(max_length=40)
+    premios = models.CharField(max_length=200)
+    biografia = models.CharField(max_length=200, default="Bio")
+    def __str__(self):
+        return f"Nombre: {self.nombre} - Apellido: {self.apellido}"

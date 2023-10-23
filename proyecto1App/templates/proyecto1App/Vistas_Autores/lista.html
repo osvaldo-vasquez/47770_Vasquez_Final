@@ -1,0 +1,15 @@
+{% extends "proyecto1App/base.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+{% for autor in object_list %}
+    <li> {{autor}} </li>
+    <a href = "{% url 'DeleteAutor' autor.id %}" >Eliminar</a>
+    <a href = "{% url 'DetailAutor' autor.id%}" >Detalle</a>
+    <a href = "{% url 'EditAutor' autor.id%}" >Editar</a>
+
+{% endfor %}
+
+{% endblock contenidoquecambia %}

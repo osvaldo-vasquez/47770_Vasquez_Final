@@ -1,0 +1,15 @@
+{% extends "proyecto1App/base.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+<p>Estamos buscando algún libro cuyo título contenga: {{nombre}} </p>>
+
+{% for libro in Libros %}
+
+    <li> {{libro.nombre}}</li>
+
+{% endfor %}
+
+{% endblock contenidoquecambia %}

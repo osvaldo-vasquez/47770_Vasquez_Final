@@ -1,0 +1,15 @@
+{% extends "proyecto1App/base.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+{% for revista in object_list %}
+    <li> {{revista}} </li>
+    <a href = "{% url 'DeleteRevista' revista.id %}" >Eliminar</a>
+    <a href = "{% url 'DetailRevista' revista.id%}" >Detalle</a>
+    <a href = "{% url 'EditRevista' revista.id%}" >Editar</a>
+
+{% endfor %}
+
+{% endblock contenidoquecambia %}

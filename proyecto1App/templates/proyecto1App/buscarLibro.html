@@ -1,0 +1,14 @@
+{% extends "proyecto1App/base.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+<form action = "/proyecto1App/buscar/" method = "GET">
+
+    <input type="text" name = "nombre">
+    <input type="submit" name = "Buscar">
+
+</form>
+
+{% endblock contenidoquecambia %}
